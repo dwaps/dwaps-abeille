@@ -1,0 +1,214 @@
+@import 'mixins/_anim';
+
+@mixin abeille($tailleAbeille, $dureeAnim:10s, $delai:0s)
+{
+	$wCorps: 30px;
+	$hAnneaux: 10px;
+	$wTete: 25px;
+	$hTete: $wTete;
+	$wYeux: 2px;
+	$hYeux: $wYeux+6;
+	$radius: 10px;
+
+	width: $wCorps*4;
+	position: absolute;
+	z-index: 999999;
+
+	@include anim($tailleAbeille);
+
+	// $prefix est défini depuis l'animation !
+	#{$prefix}transform: scale($tailleAbeille);
+
+
+	&.nerveuse
+	{
+		#{$prefix}transform: translate(12px, 50px) scale($tailleAbeille) rotateZ(45deg);
+		animation: animAbeilleNerveuse $dureeAnim $delai infinite alternate;
+	}
+
+	&.tranquille
+	{
+		#{$prefix}transform: translate(50px, 200px) scale($tailleAbeille) rotateZ(-27deg);
+		animation: animAbeilleTranquille $dureeAnim $delai infinite alternate;
+	}
+
+	.commun
+	{
+		box-shadow: 5px 5px 15px gray;
+		margin: auto;
+	}
+
+	.tete
+	{
+		@extend .commun;
+		position: relative;
+		animation: animTete 1s infinite;
+		top: 2px;
+		border-radius: 50%;
+		background: #000;
+		width: $wTete;
+		height: $hTete;
+		background: #000000; /* Old browsers */
+		background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #606060 100%); /* FF3.6-15 */
+		background: -webkit-radial-gradient(center, ellipse cover, #000000 0%,#606060 100%); /* Chrome10-25,Safari5.1-6 */
+		background: radial-gradient(ellipse at center, #000000 0%,#606060 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#606060',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+		.blocs-before-after-yeux
+		{
+			display: block;
+			position: absolute;
+			background: white;
+			top: 0;
+			border-radius: 75%;
+			border-top: 3px solid #000;
+			border-bottom: 6px solid #000;
+			border-left: 6px solid #000;
+			border-right: 3px solid #000;
+			height: $hYeux;
+			width: $wYeux;
+			content: "";
+		}
+		
+		.yeux::before // droit
+		{
+			@extend .blocs-before-after-yeux;
+			#{$prefix}transform: rotate(12deg);
+			left: -1px;
+		}
+		
+		.yeux::after // gauche
+		{
+			@extend .blocs-before-after-yeux;
+			#{$prefix}transform: rotate(-12deg);
+			right: -1px;
+		}
+	}
+
+	.corps
+	{
+		@extend .commun;
+		border-radius: $radius;
+		margin: auto;
+		width: $wCorps;
+		animation: animCorps 1s infinite;
+
+		span
+		{
+			display: block;
+			margin: auto;
+			height: $hAnneaux;
+		}
+		span:nth-child(odd) // Abdomen : anneaux noires
+		{
+			background: black;
+			background: #160d0d; /* Old browsers */
+			background: -moz-linear-gradient(left,  #160d0d 0%, #000000 48%, #fbffba 100%, #160d0d 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(left,  #160d0d 0%,#000000 48%,#fbffba 100%,#160d0d 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to right,  #160d0d 0%,#000000 48%,#fbffba 100%,#160d0d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#160d0d', endColorstr='#160d0d',GradientType=1 ); /* IE6-9 */
+
+			width: $wCorps;
+		}
+		span:nth-child(even) // Abdomen : anneaux jaunes
+		{
+			background: yellow;
+			background: #fff544; /* Old browsers */
+			background: -moz-linear-gradient(left,  #fff544 0%, #e8dc00 48%, #fbffba 100%, #fff544 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(left,  #fff544 0%,#e8dc00 48%,#fbffba 100%,#fff544 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to right,  #fff544 0%,#e8dc00 48%,#fbffba 100%,#fff544 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff544', endColorstr='#fff544',GradientType=1 ); /* IE6-9 */
+
+			width: $wCorps+2;
+			position: relative;
+			right: 1px;
+			border-radius: $radius;
+		}
+		.blocs-pattes
+		{
+			display: block;
+			position: absolute;
+			top: 6px;
+			content: "";
+			background: transparent;
+			height: 20px;
+			width: 12px;
+			z-index: 500;
+		}
+		span:nth-child(even)::before // Pattes gauches
+		{
+			@extend .blocs-pattes;
+			left: 0;
+			border-top: 2px solid #000;
+			border-left: 2px solid #000;
+			#{$prefix}transform: rotate(-45deg) skew(-20deg, 20deg);
+			animation: animPattesGauche 1s infinite;
+			box-shadow: -2px -2px 3px #ddd;
+		}
+		span:nth-child(even)::after // Pattes droites
+		{
+			@extend .blocs-pattes;
+			right: 0;
+			border-top: 2px solid #000;
+			border-right: 2px solid #000;
+			#{$prefix}transform: rotate(45deg) skew(20deg, -20deg);
+			animation: animPattesDroite 1s infinite;
+			box-shadow: 2px 2px 3px #ddd;
+		}
+		span:first-child
+		{
+			border-top-left-radius: 2+$radius;
+			border-top-right-radius: 2+$radius;
+		}
+		span:last-child
+		{
+			border-bottom-left-radius: $radius;
+			border-bottom-right-radius: $radius;
+		}
+	}
+
+	.ailes
+	{
+		position: relative;
+		left: 3px;
+		#{$prefix}transform: rotate(-5deg);
+		z-index: -1;
+	}
+	.ailes:nth-child(odd)::before,
+	.ailes:nth-child(even)::after
+	{
+		#{$prefix}transform: rotate($posAilesStart) skew(35deg, 10deg);
+		animation: animAilesUpDown 150ms infinite linear;
+	}
+	.ailes:nth-child(odd)::after,
+	.ailes:nth-child(even)::before
+	{
+		#{$prefix}transform: rotate(-$posAilesStart) skew(35deg, 10deg);
+		animation: animAilesDownUp 150ms infinite linear;
+	}
+	.blocs-ailes
+	{
+		display: block;
+		position: absolute;
+		top: -45px;
+		content: "";
+		background: #ddd;
+		border: 1px solid #222;
+		width: 45px;
+		height: 20px;
+		border-radius: 50px;
+	}
+	.ailes::before // Ailes gauches
+	{
+		@extend .blocs-ailes;
+		#{$prefix}transform-origin: 100%;
+		left: 0;
+	}
+
+	.ailes::after // Ailes droites
+	{
+		@extend .blocs-ailes;
+		#{$prefix}transform-origin: 0%;
+		right: 0;
+	}
+}

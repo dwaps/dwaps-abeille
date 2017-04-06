@@ -1,0 +1,26 @@
+{
+  "name": "dwaps-abeille",
+  "version": "0.1.0",
+  "description": "Affichage d'une ou plusieurs abeilles animées depuis une page html.",
+  "main": "js/dwaps-abeille.js",
+  "keywords": [
+    "DWAPS",
+    "DWAPS Formation",
+    "Michael Cornillon",
+    "affichage abeilles",
+    "abeilles",
+    "deco web"
+  ],
+  "authors": [
+    "DWAPS Formation - Michael Cornillon"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dwaps/dwaps-abeilles",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

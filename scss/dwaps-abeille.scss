@@ -1,0 +1,7 @@
+// MIXINS
+@import 'mixins/_abeille';
+
+dwaps-abeille
+{
+	@include abeille(0.2, 10s); // tailleAbeille, dureeAnim, delai
+}

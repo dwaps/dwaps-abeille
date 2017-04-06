@@ -1,0 +1,331 @@
+@mixin anim($tailleAbeille)
+{
+	$posAilesStart: 0deg !global;
+	$skewAiles: skew(35deg, 10deg) !global;
+	$posPattesStart: 20deg !global;
+
+	// 2 TYPES D'ABEILLES
+	@include keyframes(animAbeilleNerveuse)
+	{
+		@include contentAnimAbeille(true, $tailleAbeille);
+	}
+	@include keyframes(animAbeilleTranquille)
+	{
+		@include contentAnimAbeille(false, $tailleAbeille);
+	}
+	
+
+	@include keyframes(animTete)
+	{
+		@include contentAnimTete();
+	}
+
+	@include keyframes(animCorps)
+	{
+		@include contentAnimCorps();
+	}
+
+	@include keyframes(animPattesGauches)
+	{
+		@include contentAnimPattes(false, $posPattesStart);
+	}
+
+	@include keyframes(animPattesDroites)
+	{
+		@include contentAnimPattes(true, $posPattesStart);
+	}
+
+	@include keyframes(animAilesUpDown)
+	{
+		@include contentAnimAiles(false, $skewAiles, $posAilesStart);
+	}
+
+	@include keyframes(animAilesDownUp)
+	{
+		@include contentAnimAiles(true, $skewAiles, $posAilesStart);
+	}
+}
+
+@mixin keyframes($name)
+{
+	@-webkit-keyframes #{$name}
+	{
+		$prefix: "-webkit-" !global;
+		@content;
+	}
+	@-moz-keyframes #{$name}
+	{
+		$prefix: "-webkit-" !global;
+		@content;
+	}
+	@-ms-keyframes #{$name}
+	{
+		$prefix: "-webkit-" !global;
+		@content;
+	}
+	@-o-keyframes #{$name}
+	{
+		$prefix: "-webkit-" !global;
+		@content;
+	}
+	@keyframes #{$name}
+	{
+		$prefix: "-webkit-" !global;
+		@content;
+	}
+}
+
+@mixin contentAnimAbeille($path1, $tailleAbeille)
+{
+	@if $path1
+	{
+		0% { 
+			#{$prefix}transform: translate(12px, 50px) scale($tailleAbeille) rotateZ(45deg);
+		}
+		5% { 
+			#{$prefix}transform: translate(12px, 50px) scale($tailleAbeille) rotateZ(45deg);
+		}
+		7% { 
+			#{$prefix}transform: translate(112px, 200px) scale($tailleAbeille) rotateZ(5deg);
+		}
+		10% { 
+			#{$prefix}transform: translate(112px, 200px) scale($tailleAbeille) rotateZ(5deg);
+		}
+		12% { 
+			#{$prefix}transform: translate(150px, 120px) scale($tailleAbeille) rotateZ(-50deg);
+		}
+		15% { 
+			#{$prefix}transform: translate(150px, 120px) scale($tailleAbeille) rotateZ(-50deg);
+		}
+		16% { 
+			#{$prefix}transform: translate(158px, 150px) scale($tailleAbeille+0.2) rotateZ(45deg);
+		}
+		19% { 
+			#{$prefix}transform: translate(158px, 150px) scale($tailleAbeille+0.1) rotateZ(45deg);
+		}
+		22% { 
+			#{$prefix}transform: translate(10px, 200px) scale(-0.3+$tailleAbeille) rotateZ(90deg);
+		}
+		27% { 
+			#{$prefix}transform: translate(10px, 200px) scale(-0.3+$tailleAbeille) rotateZ(90deg);
+		}
+		28% { 
+			#{$prefix}transform: translate(88px, 98px) scale($tailleAbeille) rotateZ(2deg);
+		}
+		45% { 
+			#{$prefix}transform: translate(88px, 98px) scale($tailleAbeille) rotateZ(5deg);
+		}
+		50% { 
+			#{$prefix}transform: translate(12px, 50px) scale($tailleAbeille) rotateZ(-5deg);
+		}
+		53% { 
+			#{$prefix}transform: translate(50px, 150px) scale($tailleAbeille) rotateZ(12deg);
+		}
+		55% { 
+			#{$prefix}transform: translate(50px, 150px) scale($tailleAbeille) rotateZ(12deg);
+		}
+		56% { 
+			#{$prefix}transform: translate(133px, 232px) scale($tailleAbeille+0.4) rotateZ(-13deg);
+		}
+		65% { 
+			#{$prefix}transform: translate(133px, 232px) scale($tailleAbeille+0.4) rotateZ(-13deg);
+		}
+		67% { 
+			#{$prefix}transform: translate(108px, 155px) scale($tailleAbeille+0.1) rotateZ(-56deg);
+		}
+		69% { 
+			#{$prefix}transform: translate(108px, 155px) scale($tailleAbeille+0.1) rotateZ(-56deg);
+		}
+		70% { 
+			#{$prefix}transform: translate(80px, 177px) scale(-0.4+$tailleAbeille) rotateZ(47deg);
+		}
+		74% { 
+			#{$prefix}transform: translate(80px, 177px) scale(-0.4+$tailleAbeille) rotateZ(47deg);
+		}
+		76% { 
+			#{$prefix}transform: translate(80px, 177px) scale(-0.9+$tailleAbeille) rotateZ(-13deg);
+		}
+		80% { 
+			#{$prefix}transform: translate(80px, 177px) scale(-0.9+$tailleAbeille) rotateZ(-13deg);
+		}
+		82% { 
+			#{$prefix}transform: translate(200px, 210px) scale($tailleAbeille+0.2) rotateZ(45deg);
+		}
+		86% { 
+			#{$prefix}transform: translate(200px, 210px) scale($tailleAbeille+0.2) rotateZ(45deg);
+		}
+		88% { 
+			#{$prefix}transform: translate(110px, 110px) scale(-0.1+$tailleAbeille) rotateZ(20deg);
+		}
+		91% { 
+			#{$prefix}transform: translate(110px, 110px) scale(-0.1+$tailleAbeille) rotateZ(20deg);
+		}
+		92% { 
+			#{$prefix}transform: translate(94px, 157px) scale($tailleAbeille) rotateZ(-16deg);
+		}
+		95% { 
+			#{$prefix}transform: translate(94px, 157px) scale($tailleAbeille) rotateZ(-16deg);
+		}
+		97% { 
+			#{$prefix}transform: translate(35px, 213px) scale($tailleAbeille) rotateZ(40deg);
+		}
+		100% { 
+			#{$prefix}transform: translate(12px, 50px) scale($tailleAbeille) rotateZ(45deg);
+		}
+	}
+	@else
+	{
+		0% { 
+			#{$prefix}transform: translate(50px, 200px) scale($tailleAbeille) rotateZ(-27deg);
+		}
+		4% { 
+			#{$prefix}transform: translate(50px, 200px) scale($tailleAbeille) rotateZ(-27deg);
+		}
+		7% { 
+			#{$prefix}transform: translate(130px, 120px) scale($tailleAbeille+0.2) rotateZ(-14deg);
+		}
+		11% { 
+			#{$prefix}transform: translate(130px, 120px) scale($tailleAbeille+0.2) rotateZ(-14deg);
+		}
+		15% { 
+			#{$prefix}transform: translate(110px, 110px) scale($tailleAbeille) rotateZ(40deg);
+		}
+		24% { 
+			#{$prefix}transform: translate(110px, 110px) scale($tailleAbeille) rotateZ(40deg);
+		}
+		26% { 
+			#{$prefix}transform: translate(50px, 230px) scale($tailleAbeille+0.5) rotateZ(45deg);
+		}
+		29% { 
+			#{$prefix}transform: translate(50px, 230px) scale($tailleAbeille+0.5) rotateZ(45deg);
+		}
+		35% { 
+			#{$prefix}transform: translate(200px, 230px) scale($tailleAbeille) rotateZ(45deg);
+		}
+		47% { 
+			#{$prefix}transform: translate(200px, 230px) scale($tailleAbeille) rotateZ(45deg);
+		}
+		50% { 
+			#{$prefix}transform: translate(0px, 180px) scale(-0.1+$tailleAbeille) rotateZ(-56deg);
+		}
+		55% { 
+			#{$prefix}transform: translate(0px, 180px) scale(-0.1+$tailleAbeille) rotateZ(-56deg);
+		}
+		60% { 
+			#{$prefix}transform: translate(400px, 10px) scale($tailleAbeille+0.2) rotateZ(13deg);
+		}
+		63% { 
+			#{$prefix}transform: translate(400px, 10px) scale($tailleAbeille+0.2) rotateZ(13deg);
+		}
+		68% { 
+			#{$prefix}transform: translate(260px, 98px) scale($tailleAbeille+0.5) rotateZ(28deg);
+		}
+		72% { 
+			#{$prefix}transform: translate(260px, 98px) scale($tailleAbeille+0.5) rotateZ(28deg);
+		}
+		75% { 
+			#{$prefix}transform: translate(250px, 50px) scale($tailleAbeille) rotateZ(-15deg);
+		}
+		79%
+		{
+			#{$prefix}transform: translate(350px, 230px) scale($tailleAbeille+0.2) rotateZ(-15deg);
+		}
+		85% { 
+			#{$prefix}transform: translate(120px, 80px) scale(-0.3+$tailleAbeille) rotateZ(-15deg);
+		}
+		97% { 
+			#{$prefix}transform: translate(30px, 210px) scale($tailleAbeille) rotateZ(5deg);
+		}
+		100% { 
+			#{$prefix}transform: translate(50px, 200px) scale($tailleAbeille) rotateZ(-27deg);
+		}
+	}
+}
+
+@mixin contentAnimTete()
+{
+	0% { 
+		top: 2px;
+	}
+	50% { 
+		top: 4px;
+	}
+	100% { 
+		top: 2px;
+	}
+}
+
+@mixin contentAnimCorps()
+{
+	0% { 
+		#{$prefix}transform: scale(1);
+	}
+	50% { 
+		#{$prefix}transform: scale(1.05);
+	}
+	100% { 
+		#{$prefix}transform: scale(1);
+	}
+}
+
+@mixin contentAnimPattes($droites, $posPattesStart)
+{
+	@if $droites
+	{
+		0% { 
+			#{$prefix}transform: translate(0,0) skew(-$posPattesStart, $posPattesStart);
+		}
+		50% { 
+			#{$prefix}transform: translate(1px,1px) skew(-3-$posPattesStart, 8+$posPattesStart);
+		}
+		70% { 
+			#{$prefix}transform: translate(2px,2px) skew(-3-$posPattesStart, 8+$posPattesStart);
+		}
+		100% { 
+			#{$prefix}transform: translate(0,0) skew(-$posPattesStart, $posPattesStart);
+		}
+	}
+	@else
+	{
+		0% { 
+			#{$prefix}transform: translate(0,0) skew($posPattesStart, -$posPattesStart);
+		}
+		50% { 
+			#{$prefix}transform: translate(1px,1px) skew(-3+$posPattesStart, -8-$posPattesStart);
+		}
+		70% { 
+			#{$prefix}transform: translate(2px,2px) skew(-3+$posPattesStart, -8-$posPattesStart);
+		}
+		100% { 
+			#{$prefix}transform: translate(0,0) skew($posPattesStart, -$posPattesStart);
+		}
+	}
+}
+
+@mixin contentAnimAiles($downToUp, $skewAiles, $posAilesStart)
+{
+	@if $downToUp
+	{
+		0% { 
+			#{$prefix}transform: rotate($posAilesStart) $skewAiles;
+		}
+		50% { 
+			#{$prefix}transform: rotate(70+$posAilesStart) $skewAiles;
+		}
+		100% { 
+			#{$prefix}transform: rotate($posAilesStart) $skewAiles;
+		}
+	}
+	@else
+	{
+		0% { 
+			#{$prefix}transform: rotate(-$posAilesStart) $skewAiles;
+		}
+		50% { 
+			#{$prefix}transform: rotate(-70-$posAilesStart) $skewAiles;
+		}
+		100% { 
+			#{$prefix}transform: rotate(-$posAilesStart) $skewAiles;
+		}
+	}
+}
