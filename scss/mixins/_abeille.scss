@@ -1,4 +1,4 @@
-@import 'mixins/_anim';
+@import '_anim';
 
 @mixin abeille($tailleAbeille, $dureeAnim:10s, $delai:0s)
 {

@@ -55,22 +55,22 @@
 	}
 	@-moz-keyframes #{$name}
 	{
-		$prefix: "-webkit-" !global;
+		$prefix: "-moz-" !global;
 		@content;
 	}
 	@-ms-keyframes #{$name}
 	{
-		$prefix: "-webkit-" !global;
+		$prefix: "-ms-" !global;
 		@content;
 	}
 	@-o-keyframes #{$name}
 	{
-		$prefix: "-webkit-" !global;
+		$prefix: "-o-" !global;
 		@content;
 	}
 	@keyframes #{$name}
 	{
-		$prefix: "-webkit-" !global;
+		$prefix: "" !global;
 		@content;
 	}
 }
